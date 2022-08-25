@@ -50,13 +50,11 @@ namespace TelegramBotExperiments
             }
         }
         
-
         public static async Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
             // Некоторые действия
             Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(exception));
         }
-
 
         static void Main(string[] args)
         {
