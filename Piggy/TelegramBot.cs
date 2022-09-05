@@ -19,10 +19,27 @@ namespace Piggy
         public TelegramBot()
         {
             Client = new TelegramBotClient(Token);
-
+           // SetCommands();
 
         }
 
+        private void SetCommands()
+        {
+            var commands = new BotCommand[]
+            {
+                new BotCommand{Command="/greetpig",Description = "Подружиться со свинкой"},
+                new BotCommand{Command="/help",Description = "Помощь с коммандами свинки"},
+                new BotCommand{Command="/addgoal",Description = "Добавить желание свинке"},
+                new BotCommand{Command="/mygoals",Description = "Просмотреть все желания свинки"},
+
+            };
+            Client.SetMyCommandsAsync(commands);
+        }
+
+        private BotCommand[] GetCommands()
+        {
+            return  Client.GetMyCommandsAsync().Result;
+        }
 
         public void Start(Func<ITelegramBotClient,Update,CancellationToken,Task> HandleUpdateAsync, Func<ITelegramBotClient,Exception,CancellationToken,Task> HandleErrorAsync)
         {
